@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sanal ortam klasörleri
+venv/
+env/
+.venv/
+
+# Ortam değişkeni ve API key dosyaları
+*.env
+openai_key.txt
+
+# IDE ayarları
+.vscode/
+.idea/
+
+# MacOS / Windows sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Log ve geçici dosyalar
+*.log
+*.tmp
+
+# Streamlit cache (kullanırsanız)
+.streamlit/
