@@ -44,14 +44,14 @@ def analyze_image(image):
 
     olay_ozeti = "Bilgi bulunamadı."
 
-    return f"""
-1. Kısa Olay Özeti:
+    sevk_maddeleri = "\n• " + "\n• ".join(sevk_list) if sevk_list else "Veri yok."
+
+    return f"""1. Kısa Olay Özeti:
 
 {olay_ozeti}
 
 2. Sevk Maddeleri:
-
-• {'\n• '.join(sevk_list)}
+{sevk_maddeleri}
 
 3. Görevli Büro:
 
