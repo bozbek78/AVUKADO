@@ -5,8 +5,8 @@ import json
 import os
 
 # json dosyasını oku
-def load_json(file_path="json.txt"):
-    with open(file_path, "r", encoding="utf-8") as f:
+def load_json():
+    with open("json_data.json", encoding="utf-8") as f:
         data = json.load(f)
     return data
 
