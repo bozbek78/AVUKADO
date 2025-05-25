@@ -2,3 +2,4 @@ gradio
 pytesseract
 Pillow
 openai
+easyocr

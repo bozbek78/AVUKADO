@@ -1,16 +1,17 @@
 import gradio as gr
 from PIL import Image
-import pytesseract
+import easyocr
 import json
-import os
+import numpy as np
 
-# json dosyasını oku
+# JSON dosyasını oku
 def load_json():
     with open("json_data.json", encoding="utf-8") as f:
         data = json.load(f)
     return data
 
 json_data = load_json()
+reader = easyocr.Reader(['tr'], gpu=False)
 
 # Büro eşlemesi
 def match_bureau(tck_code):
@@ -22,7 +23,10 @@ def match_bureau(tck_code):
 
 # Görselden analiz yap
 def analyze_image(image):
-    text = pytesseract.image_to_string(Image.fromarray(image), lang="tur")
+    # OCR
+    result = reader.readtext(image)
+    text = "\n".join([item[1] for item in result])
+
     matched_codes = []
     lines = text.split("\n")
     for line in lines:
@@ -67,4 +71,3 @@ demo = gr.Interface(
 
 if __name__ == "__main__":
     demo.launch(server_name="0.0.0.0", server_port=10000)
-
