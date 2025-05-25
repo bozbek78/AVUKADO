@@ -23,6 +23,7 @@ def match_bureau(tck_code):
 
 # Görselden analiz yap
 def analyze_image(image):
+    reader = easyocr.Reader(['tr'], gpu=False)
     # OCR
     result = reader.readtext(image)
     text = "\n".join([item[1] for item in result])
