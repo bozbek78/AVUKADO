@@ -1,8 +1,11 @@
 import gradio as gr
 from PIL import Image
-import easyocr
+import pytesseract
 import json
 import numpy as np
+
+# Tesseract EXE yolu (Windows için manuel ayar)
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # JSON dosyasını oku
 def load_json():
@@ -11,7 +14,6 @@ def load_json():
     return data
 
 json_data = load_json()
-reader = easyocr.Reader(['tr'], gpu=False)
 
 # Büro eşlemesi
 def match_bureau(tck_code):
@@ -23,10 +25,8 @@ def match_bureau(tck_code):
 
 # Görselden analiz yap
 def analyze_image(image):
-    reader = easyocr.Reader(['tr'], gpu=False)
-    # OCR
-    result = reader.readtext(image)
-    text = "\n".join([item[1] for item in result])
+    # OCR işlemi
+    text = pytesseract.image_to_string(Image.fromarray(image), lang="tur")
 
     matched_codes = []
     lines = text.split("\n")
